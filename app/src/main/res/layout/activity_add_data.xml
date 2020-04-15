@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/mainDarkColor"
+    tools:context=".AddData">
+
+    <EditText
+        android:id="@+id/expense_name"
+        android:theme="@style/MyEditTextStyle"
+        android:inputType="text"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/expense_name"
+        android:ems="20"
+        android:layout_marginTop="20sp"
+        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textAlignment="center"
+        android:layout_gravity="center_horizontal"
+        android:autofillHints=""/>
+
+    <EditText
+        android:id="@+id/expense_amount"
+        android:theme="@style/MyEditTextStyle"
+        android:inputType="numberDecimal"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/expense_amount"
+        android:ems="20"
+        android:layout_marginTop="20sp"
+        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textAlignment="center"
+        android:layout_gravity="center_horizontal"
+        android:autofillHints=""/>
+
+    <EditText
+        android:id="@+id/expense_d"
+        android:theme="@style/MyEditTextStyle"
+        android:inputType="text"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/expense_date"
+        android:ems="20"
+        android:layout_marginTop="20sp"
+        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textAlignment="center"
+        android:layout_gravity="center_horizontal"
+        android:autofillHints=""/>
+
+    <Spinner
+        android:id="@+id/payment_mode"
+        android:entries="@array/payment_modes"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20sp"
+        android:textAlignment="center"
+        android:layout_gravity="center_horizontal"/>
+
+    <Button
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="onClickAdd"
+        android:text="@string/add"
+        android:background="@color/button_color"
+        android:textColor="@color/white"
+        android:textSize="20sp"/>
+
+</LinearLayout>

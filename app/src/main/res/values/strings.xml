@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">Paiso</string>
+    <string name="intro_text_00">Hey there!</string>
+    <string name="intro_text_01">Enter your name to get started.</string>
+    <string name="name_field">Name</string>
+    <string name="logo">Logo</string>
+    <string name="next">NEXT</string>
+    <string name="details">Tell us the amount of money you possess everywhere.</string>
+    <string name="details_0">Bank</string>
+    <string name="details_1">Cash</string>
+    <string name="details_2">E-Wallets</string>
+    <string name="insert_point">Inserting into DB...</string>
+    <string name="get_point">Reading from DB...</string>
+    <string name="expense_name">Expense Name</string>
+    <string name="expense_amount">Amount</string>
+    <string name="expense_date">DD-MM-YYYY</string>
+    <string-array name="payment_modes">
+        <item>Cash</item>
+        <item>Card</item>
+        <item>EWallet</item>
+    </string-array>
+    <string name="add">DONE</string>
+    <string name="add_page">ADD DATA</string>
+    <string name="view_page">VIEW DATA</string>
 </resources>
