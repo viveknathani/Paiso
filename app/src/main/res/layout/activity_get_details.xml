@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@color/mainDarkColor"
+    android:background="@drawable/gradient_drawable"
     tools:context=".GetDetails">
 
     <TextView
@@ -74,10 +74,10 @@
         android:id="@+id/next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:onClick="onClickDashboard"
         android:text="@string/next"
+        android:elevation="20dp"
         android:background="@color/button_color"
         android:textColor="@color/white"
         android:textSize="20sp"/>

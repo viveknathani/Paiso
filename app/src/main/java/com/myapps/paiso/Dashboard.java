@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,19 +25,7 @@ public class Dashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        Bundle bundle=getIntent().getExtras();
-        if(bundle!=null){
-
-            float[] storedValues=bundle.getFloatArray("values");
-            assert storedValues != null;
-
-            user_name=bundle.getString("name");
-            bank_details=storedValues[0];
-            cash_details=storedValues[1];
-            ewallet_details=storedValues[2];
-
-        }
-        TextView db_name=findViewById(R.id.db_name);
+        TextView helloText=findViewById(R.id.getPoint);
         TextView db_details_0=findViewById(R.id.db_details_0);
         TextView db_details_1=findViewById(R.id.db_details_1);
         TextView db_details_2=findViewById(R.id.db_details_2);
@@ -43,10 +33,10 @@ public class Dashboard extends AppCompatActivity {
         DatabaseHandler db=new DatabaseHandler(this);
         List<Float> detailsList=db.getMoneyDetailsFromDB();
 
-        db_name.setText(db.getUserNameFromDB());
-        db_details_0.setText(Float.toString(detailsList.get(0)));
-        db_details_1.setText(Float.toString(detailsList.get(1)));
-        db_details_2.setText(Float.toString(detailsList.get(2)));
+        helloText.setText("Hello, "+db.getUserNameFromDB()+"!");
+        db_details_0.setText("Bank : "+Float.toString(detailsList.get(0)));
+        db_details_1.setText("Cash : "+Float.toString(detailsList.get(1)));
+        db_details_2.setText("E-Wallet : "+Float.toString(detailsList.get(2)));
     }
 
     public void onClickAddActivity(View view){
