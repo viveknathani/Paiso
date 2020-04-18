@@ -7,10 +7,11 @@
     <string name="main_name_field">Name</string>
     <string name="next">NEXT</string>
 
-    <string name="details">So, how is your money distributed?</string>
-    <string name="details_0">Bank</string>
-    <string name="details_1">Cash</string>
-    <string name="details_2">E-Wallets</string>
+    <string name="get_details_intro">So, how is your money distributed?</string>
+    <string name="get_details_db_0">Bank</string>
+    <string name="get_details_db_1">Cash</string>
+    <string name="get_details_db_2">E-Wallets</string>
+
     <string name="expense_name">Expense Name</string>
     <string name="expense_amount">Amount</string>
     <string name="expense_date">DD-MM-YYYY</string>
