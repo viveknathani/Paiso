@@ -1,10 +1,12 @@
 <resources>
     <string name="app_name">Paiso</string>
-    <string name="intro_text_00">Hey there!</string>
-    <string name="intro_text_01">Enter your name to get started.</string>
-    <string name="name_field">Name</string>
+
     <string name="logo">Logo</string>
+    <string name="main_greet_0">Hey there!</string>
+    <string name="main_greet_1">Enter your name to get started.</string>
+    <string name="main_name_field">Name</string>
     <string name="next">NEXT</string>
+
     <string name="details">So, how is your money distributed?</string>
     <string name="details_0">Bank</string>
     <string name="details_1">Cash</string>
@@ -21,6 +23,8 @@
     <string name="add_page">ADD</string>
     <string name="view_page">VIEW</string>
     <string name="dashboard_heading">Paiso - Dashboard</string>
+    <string name="add_heading">Paiso - Add Data</string>
     <string name="bottom_text">Made with love by Vivek Nathani &#10084;</string>
     <string name="summary">Here\'s your summary.</string>
+    <string name="give_details">Fill in the details.</string>
 </resources>
