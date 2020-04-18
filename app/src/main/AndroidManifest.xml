@@ -10,10 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ViewData"></activity>
-        <activity android:name=".AddData" />
+        <activity
+            android:name=".AddData"
+            android:label="@string/add_heading"/>
         <activity
             android:name=".Dashboard"
-            android:label="@string/dashboard_heading"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             />
         <activity
             android:name=".GetDetails"

@@ -12,6 +12,12 @@
     <string name="get_details_db_1">Cash</string>
     <string name="get_details_db_2">E-Wallets</string>
 
+    <string name="summary">Your Summary</string>
+    <string name="actions">Actions</string>
+    <string name="add_page">SPENT</string>
+    <string name="credit_page">GAINED</string>
+    <string name="update_page">UPDATE</string>
+
     <string name="expense_name">Expense Name</string>
     <string name="expense_amount">Amount</string>
     <string name="expense_date">DD-MM-YYYY</string>
@@ -21,11 +27,9 @@
         <item>EWallet</item>
     </string-array>
     <string name="add">DONE</string>
-    <string name="add_page">ADD</string>
     <string name="view_page">VIEW</string>
     <string name="dashboard_heading">Paiso - Dashboard</string>
     <string name="add_heading">Paiso - Add Data</string>
     <string name="bottom_text">Made with love by Vivek Nathani &#10084;</string>
-    <string name="summary">Here\'s your summary.</string>
     <string name="give_details">Fill in the details.</string>
 </resources>

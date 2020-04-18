@@ -15,6 +15,9 @@ public class AddData extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_data);
+        Spinner spinner = findViewById(R.id.payment_mode);
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.payment_modes, R.layout.spinner_item);
+        spinner.setAdapter(adapter);
     }
 
     public void onClickAdd(View view){
