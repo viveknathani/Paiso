@@ -8,19 +8,19 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-public class AddData extends AppCompatActivity
+public class Gained extends AppCompatActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_data);
+        setContentView(R.layout.activity_gained);
         Spinner spinner = findViewById(R.id.payment_mode);
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.payment_modes, R.layout.spinner_item);
         spinner.setAdapter(adapter);
     }
 
-    public void onClickAdd(View view)
+    public void onClickGain(View view)
     {
         EditText expense_name=(EditText)findViewById(R.id.expense_name);
         EditText amount=(EditText)findViewById(R.id.expense_amount);
@@ -33,8 +33,8 @@ public class AddData extends AppCompatActivity
         String db_mode=payment_mode.getSelectedItem().toString();
 
         DatabaseHandler db=new DatabaseHandler(this);
-        db.addDataToCreditDebitInfoAndModifyUserInfo(db_e_name, db_amount, db_e_date, db_mode, "DEBIT");
-        Intent i=new Intent(AddData.this, Dashboard.class);
+        db.addDataToCreditDebitInfoAndModifyUserInfo(db_e_name, db_amount, db_e_date, db_mode, "CREDIT");
+        Intent i=new Intent(Gained.this, Dashboard.class);
         startActivity(i);
     }
 }

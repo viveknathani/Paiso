@@ -41,7 +41,7 @@
 
     <EditText
         android:id="@+id/name"
-        android:theme="@style/MyEditTextStyle"
+        android:theme="@style/Intro_MyEditTextStyle"
         android:inputType="text"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
@@ -62,8 +62,7 @@
         android:layout_marginTop="10dp"
         android:onClick="onClickNext"
         android:text="@string/next"
-        android:background="@color/button_color"
-        android:elevation="30dp"
+        android:background="@drawable/nextbutton"
         android:textColor="@color/white"
         android:textSize="20sp"/>
 </LinearLayout>

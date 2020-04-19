@@ -9,14 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewData"></activity>
+        <activity
+            android:name=".Gained"
+            android:label="@string/gain_heading"
+            android:theme="@style/SpentTheme"/>
+        <activity android:name=".ViewData" />
         <activity
             android:name=".AddData"
-            android:label="@string/add_heading"/>
+            android:label="@string/add_heading"
+            android:theme="@style/SpentTheme" />
         <activity
             android:name=".Dashboard"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".GetDetails"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />

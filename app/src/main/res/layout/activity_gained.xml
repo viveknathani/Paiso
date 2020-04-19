@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="@drawable/gradient_drawable"
-    tools:context=".AddData">
+    tools:context=".Gained">
 
     <TextView
         android:id="@+id/details_head"
@@ -18,7 +18,7 @@
         android:textSize="25sp"
         android:textAlignment="center"
         android:layout_gravity="center_horizontal"
-        android:textColor="@color/yellow"/>
+        android:textColor="@color/green_light"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
@@ -44,7 +44,7 @@
                 android:inputType="text"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/expense_name"
+                android:hint="@string/gained_name"
                 android:ems="20"
                 android:layout_marginTop="20sp"
                 android:textSize="20sp"
@@ -102,9 +102,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:onClick="onClickAdd"
+                android:onClick="onClickGain"
                 android:text="@string/add"
-                android:background="@drawable/mybutton"
+                android:background="@drawable/gainbutton"
                 android:textColor="@color/white"
                 android:layout_gravity="center_horizontal"
                 android:textSize="20sp"/>

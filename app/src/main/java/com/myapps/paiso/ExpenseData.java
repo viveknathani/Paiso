@@ -9,6 +9,7 @@ public class ExpenseData
     private float amount=0;
     private String date="";
     private String paymentMode="";
+    private String paymentType="";
 
     public void setExpenseName(String val) { this.expenseName=val; }
 
@@ -18,6 +19,8 @@ public class ExpenseData
 
     public void setPaymentMode(String val) { this.paymentMode=val; }
 
+    public void setPaymentType(String val) { this.paymentType=val; }
+
     public String getExpenseName() { return this.expenseName; }
 
     public float getAmount() { return this.amount; }
@@ -25,6 +28,8 @@ public class ExpenseData
     public String getDate() { return this.date; }
 
     public String getPaymentMode() { return this.paymentMode; }
+
+    public String getPaymentType() { return this.paymentType; }
 
     public Date getParsedDate()
     {

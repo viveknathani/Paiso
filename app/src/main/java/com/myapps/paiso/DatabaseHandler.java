@@ -29,21 +29,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                                                           +"DETAILS_CASH REAL,"
                                                           +"DETAILS_EWALLET REAL)");
 
-        String sqlCreateDebitInfo=("CREATE TABLE DEBIT_INFO(_id INTEGER,"
+        String sqlCreateCreditDebitInfo=("CREATE TABLE CREDIT_DEBIT_INFO(_id INTEGER,"
                                                              + "EXPENSE_NAME TEXT,"
                                                              +"AMOUNT REAL,"
                                                              +"EXPENSE_DATE TEXT,"
-                                                             +"PAYMENT_MODE TEXT)");
+                                                             +"PAYMENT_MODE TEXT,"
+                                                             +"PAYMENT_TYPE)");
 
         db.execSQL(sqlCreateUserInfo);
-        db.execSQL(sqlCreateDebitInfo);
+        db.execSQL(sqlCreateCreditDebitInfo);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
         if(oldVersion==1){
             db.execSQL("DROP TABLE USER_INFO");
-            db.execSQL("DROP TABLE DEBIT_INFO");
+            db.execSQL("DROP TABLE CREDIT_DEBIT_INFO");
             onCreate(db);
         }
     }
@@ -95,7 +96,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return detailsList;
     }
 
-    void addDataToDebitInfoAndModifyUserInfo(String expense_name, float amount, String expense_date, String payment_mode){
+    void addDataToCreditDebitInfoAndModifyUserInfo(String expense_name, float amount, String expense_date, String payment_mode, String payment_type){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues rowValues=new ContentValues();
 
@@ -104,8 +105,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         rowValues.put("AMOUNT", amount);
         rowValues.put("EXPENSE_DATE", expense_date);
         rowValues.put("PAYMENT_MODE", payment_mode);
+        rowValues.put("PAYMENT_TYPE", payment_type);
 
-        db.insert("DEBIT_INFO", null, rowValues);
+        db.insert("CREDIT_DEBIT_INFO", null, rowValues);
 
         String option;
         if(payment_mode.equals("Cash"))      { option="DETAILS_CASH"; }
@@ -124,7 +126,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             }while(cursor.moveToNext());
         }
 
-        newValue=currentValue-amount;
+        if(payment_type.equals("DEBIT"))
+        {
+            newValue=currentValue-amount;
+        }
+        else
+        {
+            newValue=currentValue+amount;
+        }
 
         String updateTable="UPDATE USER_INFO SET "+option+" = "+newValue;
         db.execSQL(updateTable);
@@ -148,7 +157,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Map<Date, LinkedList<ExpenseData>> returnHashTable(){
         Map<Date, LinkedList<ExpenseData>> hashTable=new TreeMap<Date, LinkedList<ExpenseData>>();
-        String query="SELECT EXPENSE_NAME, AMOUNT, EXPENSE_DATE, PAYMENT_MODE FROM DEBIT_INFO";
+        String query="SELECT EXPENSE_NAME, AMOUNT, EXPENSE_DATE, PAYMENT_MODE, PAYMENT_TYPE FROM CREDIT_DEBIT_INFO";
         SQLiteDatabase db=this.getWritableDatabase();
         Cursor cursor=db.rawQuery(query, null);
 
@@ -159,6 +168,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 obj.setAmount(cursor.getFloat(1));
                 obj.setDate(cursor.getString(2));
                 obj.setPaymentMode(cursor.getString(3));
+                obj.setPaymentType(cursor.getString(4));
                 addObjectToHashTable(hashTable, obj);
             }while(cursor.moveToNext());
         }

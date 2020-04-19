@@ -41,6 +41,12 @@ public class Dashboard extends AppCompatActivity
         startActivity(i);
     }
 
+    public void onClickGainedActivity(View view)
+    {
+        Intent i=new Intent(Dashboard.this, Gained.class);
+        startActivity(i);
+    }
+
     public void onClickViewData(View view)
     {
         Intent i=new Intent(Dashboard.this, ViewData.class);
