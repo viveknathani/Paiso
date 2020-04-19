@@ -1,27 +1,22 @@
 package com.myapps.paiso;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class Dashboard extends AppCompatActivity {
-
+public class Dashboard extends AppCompatActivity
+{
     private String user_name="";
     private float bank_details=0;
     private float cash_details=0;
     private float ewallet_details=0;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
@@ -30,6 +25,7 @@ public class Dashboard extends AppCompatActivity {
         TextView db_details_1=findViewById(R.id.db_details_1);
         TextView db_details_2=findViewById(R.id.db_details_2);
 
+        //get user info from database
         DatabaseHandler db=new DatabaseHandler(this);
         List<Float> detailsList=db.getMoneyDetailsFromDB();
 
@@ -39,12 +35,14 @@ public class Dashboard extends AppCompatActivity {
         db_details_2.setText("E-Wallet : "+Float.toString(detailsList.get(2)));
     }
 
-    public void onClickAddActivity(View view){
+    public void onClickAddActivity(View view)
+    {
         Intent i=new Intent(Dashboard.this, AddData.class);
         startActivity(i);
     }
 
-    public void onClickViewData(View view){
+    public void onClickViewData(View view)
+    {
         Intent i=new Intent(Dashboard.this, ViewData.class);
         startActivity(i);
     }
