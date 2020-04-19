@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
@@ -13,8 +12,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class DatabaseHandler extends SQLiteOpenHelper {
-
+public class DatabaseHandler extends SQLiteOpenHelper
+{
     private static final String DB_NAME="PaisoDB";
     private static final int DB_VERSION=1;
     DatabaseHandler(Context context){
@@ -22,7 +21,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db){
+    public void onCreate(SQLiteDatabase db)
+    {
         String sqlCreateUserInfo=("CREATE TABLE USER_INFO(_id INTEGER PRIMARY KEY AUTOINCREMENT,"
                                                           + "NAME TEXT,"
                                                           +"DETAILS_BANK REAL,"
@@ -41,15 +41,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
-        if(oldVersion==1){
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
+    {
+        if(oldVersion==1)
+        {
             db.execSQL("DROP TABLE USER_INFO");
             db.execSQL("DROP TABLE CREDIT_DEBIT_INFO");
             onCreate(db);
         }
     }
 
-    void addDataToUserInfo(String username, float bank_d, float cash_d, float ewallet_d){
+    void addDataToUserInfo(String username, float bank_d, float cash_d, float ewallet_d)
+    {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues rowValues=new ContentValues();
 
@@ -62,23 +65,27 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public String getUserNameFromDB(){
+    public String getUserNameFromDB()
+    {
         String stringToReturn="";
         SQLiteDatabase db=this.getWritableDatabase();
         String query="SELECT NAME FROM USER_INFO";
         Cursor cursor=db.rawQuery(query, null);
 
-        if(cursor.moveToFirst()){
-            do{
+        if(cursor.moveToFirst())
+        {
+            do {
                 stringToReturn=cursor.getString(0);
             }while(cursor.moveToNext());
         }
+        cursor.close();
         db.close();
 
         return stringToReturn;
     }
 
-    public List<Float> getMoneyDetailsFromDB(){
+    public List<Float> getMoneyDetailsFromDB()
+    {
         List<Float> detailsList=new ArrayList<Float>();
         SQLiteDatabase db=this.getWritableDatabase();
         String query="SELECT DETAILS_BANK, DETAILS_CASH, DETAILS_EWALLET FROM USER_INFO";
@@ -91,12 +98,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 detailsList.add(cursor.getFloat(2));
             }while(cursor.moveToNext());
         }
+        cursor.close();
         db.close();
 
         return detailsList;
     }
 
-    void addDataToCreditDebitInfoAndModifyUserInfo(String expense_name, float amount, String expense_date, String payment_mode, String payment_type){
+    void addDataToCreditDebitInfoAndModifyUserInfo(String expense_name, float amount, String expense_date, String payment_mode, String payment_type)
+    {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues rowValues=new ContentValues();
 
@@ -120,7 +129,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         Cursor cursor=db.rawQuery(query, null);
 
-        if(cursor.moveToFirst()){
+        if(cursor.moveToFirst())
+        {
             do{
                 currentValue=cursor.getFloat(0);
             }while(cursor.moveToNext());
@@ -136,6 +146,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
 
         String updateTable="UPDATE USER_INFO SET "+option+" = "+newValue;
+        cursor.close();
         db.execSQL(updateTable);
         db.close();
     }
@@ -155,13 +166,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
     }
 
-    public Map<Date, LinkedList<ExpenseData>> returnHashTable(){
+    public Map<Date, LinkedList<ExpenseData>> returnHashTable()
+    {
         Map<Date, LinkedList<ExpenseData>> hashTable=new TreeMap<Date, LinkedList<ExpenseData>>();
         String query="SELECT EXPENSE_NAME, AMOUNT, EXPENSE_DATE, PAYMENT_MODE, PAYMENT_TYPE FROM CREDIT_DEBIT_INFO";
         SQLiteDatabase db=this.getWritableDatabase();
         Cursor cursor=db.rawQuery(query, null);
 
-        if(cursor.moveToFirst()){
+        if(cursor.moveToFirst())
+        {
             do{
                 ExpenseData obj=new ExpenseData();
                 obj.setExpenseName(cursor.getString(0));
@@ -172,6 +185,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 addObjectToHashTable(hashTable, obj);
             }while(cursor.moveToNext());
         }
+        cursor.close();
         return hashTable;
     }
 }
