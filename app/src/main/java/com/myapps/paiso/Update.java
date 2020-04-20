@@ -3,6 +3,7 @@ package com.myapps.paiso;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -11,26 +12,29 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class ViewData extends AppCompatActivity
+public class Update extends AppCompatActivity
 {
     LinearLayout linearLayout;
     LinearLayout.LayoutParams params;
+    LinearLayout.LayoutParams button_params;
     CardView.LayoutParams params_cardview;
 
     private Map<Date, LinkedList<ExpenseData>> hashTable;
+    DatabaseHandler db;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_data);
+        setContentView(R.layout.activity_update);
 
-        DatabaseHandler db=new DatabaseHandler(this);
+        db=new DatabaseHandler(this);
         hashTable=db.returnHashTable();
 
         String[] datesArray=new String[hashTable.size()];
@@ -105,6 +109,9 @@ public class ViewData extends AppCompatActivity
         params_cardview=new CardView.LayoutParams(CardView.LayoutParams.MATCH_PARENT,
                 CardView.LayoutParams.WRAP_CONTENT);
         params_cardview.setMargins(30, 10, 30, 10);
+        button_params=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        button_params.setMargins(750, 170, 0, 10);
         try
         {
             for(Map.Entry<Date, LinkedList<ExpenseData>> entry : hashTable.entrySet())
@@ -112,7 +119,8 @@ public class ViewData extends AppCompatActivity
                 if(entry.getKey().compareTo(parsed_startDate)>=0 && entry.getKey().compareTo(parsed_endDate)<=0)
                 {
                     //get the date as a string
-                    String dateE="Date : "+entry.getValue().get(0).getDate();
+                    final String dateItem=entry.getValue().get(0).getDate();
+                    final String dateE="Date : "+dateItem;
 
                     //loop through the linked list
                     for(int i=0; i<entry.getValue().size(); i++)
@@ -120,9 +128,11 @@ public class ViewData extends AppCompatActivity
                         //prepare and put content in a text view
                         String multiLineText="";
                         String fieldName="";
-                        String amount="Amount : "+entry.getValue().get(i).getAmount();
-                        String paymentMode="Payment Mode : "+entry.getValue().get(i).getPaymentMode();
-                        String paymentType=entry.getValue().get(i).getPaymentType();
+                        final float amountItem=entry.getValue().get(i).getAmount();
+                        String amount="Amount : "+amountItem;
+                        final String paymentModeItem=entry.getValue().get(i).getPaymentMode();
+                        String paymentMode="Payment Mode : "+paymentModeItem;
+                        final String paymentType=entry.getValue().get(i).getPaymentType();
                         String paymentTypeString="Payment Type : "+paymentType;
                         if(paymentType.equals("CREDIT"))
                         {
@@ -132,7 +142,8 @@ public class ViewData extends AppCompatActivity
                         {
                             fieldName="Expense Name : ";
                         }
-                        String nameE=fieldName+entry.getValue().get(i).getExpenseName();
+                        final String nameItem=entry.getValue().get(i).getExpenseName();
+                        String nameE=fieldName+nameItem;
                         multiLineText=dateE+"\n"+nameE+"\n"+amount+"\n"+paymentMode+"\n"+paymentTypeString;
                         TextView textView=new TextView(this);
                         textView.setLayoutParams(params);
@@ -149,6 +160,24 @@ public class ViewData extends AppCompatActivity
                         }
                         textView.setPadding(10, 10, 10, 10);
 
+                        //make a delete button
+                        Button deleteButton=new Button(this);
+                        deleteButton.setText("Delete");
+                        deleteButton.setLayoutParams(button_params);
+                        deleteButton.setBackgroundResource(R.drawable.updatebutton);
+                        deleteButton.setOnClickListener(new View.OnClickListener(){
+
+                            @Override
+                            public void onClick(View view)
+                            {
+                                db.deleteRecordFromDatabase(nameItem, amountItem, dateItem, paymentModeItem, paymentType);
+                                finish();
+                                overridePendingTransition(0, 0);
+                                startActivity(getIntent());
+                                overridePendingTransition(0, 0);
+                            }
+                        });
+
                         //create a card view to hold the text view
                         CardView cardview=new CardView(this);
                         cardview.setLayoutParams(params_cardview);
@@ -156,6 +185,7 @@ public class ViewData extends AppCompatActivity
                         cardview.setRadius(10);
                         cardview.setElevation(10);
                         cardview.addView(textView);
+                        cardview.addView(deleteButton);
 
                         //put the card view into the linear layout inside the scroll view
                         linearLayout.addView(cardview);
@@ -167,6 +197,5 @@ public class ViewData extends AppCompatActivity
         {
             Log.d("Exceptions", "nullptr");
         }
-        //addTextView(ll_main, multiLineText);
     }
 }

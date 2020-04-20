@@ -151,6 +151,19 @@ public class DatabaseHandler extends SQLiteOpenHelper
         db.close();
     }
 
+    public void deleteRecordFromDatabase(String expense_name, float amount, String expense_date, String payment_mode, String payment_type)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String deleteQuery="DELETE FROM CREDIT_DEBIT_INFO WHERE "
+                            +"EXPENSE_NAME=\""+expense_name+"\" AND "
+                            +"AMOUNT="+amount+" AND "
+                            +"EXPENSE_DATE=\""+expense_date+"\" AND "
+                            +"PAYMENT_MODE=\""+payment_mode+"\" AND "
+                            +"PAYMENT_TYPE=\""+payment_type+"\"";
+        db.execSQL(deleteQuery);
+        db.close();
+    }
+
     protected void addObjectToHashTable(Map<Date, LinkedList<ExpenseData>> hashTable, ExpenseData Obj)
     {
         if(hashTable.containsKey(Obj.getParsedDate()))

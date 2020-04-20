@@ -7,7 +7,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@drawable/gradient_drawable"
-    tools:context=".ViewData">
+    tools:context=".Update">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -78,7 +78,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        
+
         <LinearLayout
             android:id="@+id/scroll_linear_layout"
             android:layout_width="match_parent"

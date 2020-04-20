@@ -12,13 +12,16 @@
     <string name="get_details_db_1">Cash</string>
     <string name="get_details_db_2">E-Wallets</string>
 
+    <string name="dashboard_heading">Paiso - Dashboard</string>
     <string name="summary">Your Summary</string>
     <string name="actions">Actions</string>
     <string name="add_page">SPENT</string>
     <string name="credit_page">GAINED</string>
     <string name="update_page">UPDATE</string>
+    <string name="view_page">VIEW</string>
 
     <string name="add_heading">Paiso - SPENT</string>
+    <string name="give_details">Fill in the details.</string>
     <string name="expense_name">Expense Name</string>
     <string name="expense_amount">Amount</string>
     <string name="expense_date">DD-MM-YYYY</string>
@@ -32,10 +35,13 @@
     <string name="gain_heading">Paiso - GAINED</string>
     <string name="gained_name">Credit Name</string>
 
-    <string name="go">Go!</string>
+    <string name="view_heading">Paiso - VIEW</string>
+    <string name="start_text">From</string>
+    <string name="end_text">To</string>
+    <string name="go">Fetch!</string>
+    <string name="refresh">Reset</string>
 
-    <string name="view_page">VIEW</string>
-    <string name="dashboard_heading">Paiso - Dashboard</string>
+    <string name="update_heading">Paiso - UPDATE</string>
+
     <string name="bottom_text">Made with love by Vivek Nathani &#10084;</string>
-    <string name="give_details">Fill in the details.</string>
 </resources>
