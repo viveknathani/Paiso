@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+
+// Entry point of the application on first run.
+
 public class MainActivity extends AppCompatActivity
 {
 
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    //take name and move to the next activity
     public void onClickNext(View view)
     {
         EditText nameView=(EditText)findViewById(R.id.name);
