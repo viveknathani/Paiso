@@ -7,9 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+
+//Second activity to appear, runs only once.
+
 public class GetDetails extends AppCompatActivity
 {
-    public String nameText="";
+    public String nameText="";  //for retrieving name from previous activity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -35,6 +38,7 @@ public class GetDetails extends AppCompatActivity
         }
     }
 
+    //take the name that came from previous activity and the monetary values and put them into DB.
     public void onClickDashboard(View view)
     {
         EditText[] valuesView={ findViewById(R.id.details_bank),
