@@ -85,9 +85,9 @@ public class Dashboard extends AppCompatActivity
 
         //add values and labels to a list
         List<PieEntry> entries = new ArrayList<>();
-        entries.add(new PieEntry(percent_bank_details, "Bank"));
-        entries.add(new PieEntry(percent_cash_details, "Cash"));
-        entries.add(new PieEntry(percent_ewallet_details, "E-Wallets"));
+        entries.add(new PieEntry(percent_bank_details, "Bank"+String.format("%.1f", percent_bank_details)+"%"));
+        entries.add(new PieEntry(percent_cash_details, "Cash"+String.format("%.1f", percent_cash_details)+"%"));
+        entries.add(new PieEntry(percent_ewallet_details, "E-Wallets"+String.format("%.1f", percent_ewallet_details)+"%"));
 
 
         //create a dataset and choose colours
@@ -97,6 +97,7 @@ public class Dashboard extends AppCompatActivity
                 Color.parseColor("#F56CA6")});
         PieData data = new PieData(set);
         data.setValueTextSize(30f);
+        data.setDrawValues(false);
 
         //more styling and finally display the chart
         chart.setCenterText("Paiso Distribution");
