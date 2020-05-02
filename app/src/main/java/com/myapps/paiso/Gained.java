@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+//activity that lets you store gained data
 public class Gained extends AppCompatActivity
 {
     @Override
