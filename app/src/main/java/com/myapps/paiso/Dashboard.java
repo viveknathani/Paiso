@@ -36,10 +36,17 @@ public class Dashboard extends AppCompatActivity
         DatabaseHandler db=new DatabaseHandler(this);
         List<Float> detailsList=db.getMoneyDetailsFromDB();
 
-        helloText.setText("Hello, "+db.getUserNameFromDB()+"!");
-        db_details_0.setText("Bank : "+Float.toString(detailsList.get(0)));
-        db_details_1.setText("Cash : "+Float.toString(detailsList.get(1)));
-        db_details_2.setText("E-Wallet : "+Float.toString(detailsList.get(2)));
+        try
+        {
+            helloText.setText("Hello, "+db.getUserNameFromDB()+"!");
+            db_details_0.setText("Bank : "+Float.toString(detailsList.get(0)));
+            db_details_1.setText("Cash : "+Float.toString(detailsList.get(1)));
+            db_details_2.setText("E-Wallet : "+Float.toString(detailsList.get(2)));
+        }
+        catch(Exception e)
+        {
+            System.out.println("Out of bounds exception");
+        }
 
         bank_details=detailsList.get(0);
         cash_details=detailsList.get(1);
