@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+//activity that adds data to the database
+
 public class AddData extends AppCompatActivity
 {
     @Override
