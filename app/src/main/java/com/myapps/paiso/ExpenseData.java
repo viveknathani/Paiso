@@ -3,6 +3,7 @@ package com.myapps.paiso;
 import java.util.*;
 import java.text.SimpleDateFormat;
 
+//a class for handling our data
 public class ExpenseData
 {
     private String expenseName="";
