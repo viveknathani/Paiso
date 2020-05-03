@@ -6,6 +6,6 @@ I am using [MP Android Chart](https://github.com/PhilJay/MPAndroidChart) for pro
 I have sent out this app to three people for their daily use. They give me feedback upon which I work.
 
 ### Screenshots
-![Image 1](https://github.com/viveknathani/Paiso/blob/master/screenshots/Image1.jpg=90x160)
-![Image 2|25%](https://github.com/viveknathani/Paiso/blob/master/screenshots/Image2.jpg)
-![Image 3|25%](https://github.com/viveknathani/Paiso/blob/master/screenshots/Image3.jpg)
+![Image 1](https://github.com/viveknathani/Paiso/blob/master/screenshots/Image1.jpg)
+![Image 2](https://github.com/viveknathani/Paiso/blob/master/screenshots/Image2.jpg)
+![Image 3](https://github.com/viveknathani/Paiso/blob/master/screenshots/Image3.jpg)
