@@ -48,9 +48,16 @@ public class Dashboard extends AppCompatActivity
             System.out.println("Out of bounds exception");
         }
 
-        bank_details=detailsList.get(0);
-        cash_details=detailsList.get(1);
-        ewallet_details=detailsList.get(2);
+        try
+        {
+            bank_details = detailsList.get(0);
+            cash_details = detailsList.get(1);
+            ewallet_details = detailsList.get(2);
+        }
+        catch(Exception e)
+        {
+            System.out.println("Out of bounds exception");
+        }
 
         makePieChart(bank_details, cash_details, ewallet_details);
     }
