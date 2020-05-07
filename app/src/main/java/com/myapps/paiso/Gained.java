@@ -43,7 +43,7 @@ public class Gained extends AppCompatActivity
         }
         catch(Exception e)
         {
-            Log.d("What is this Vivek?", "Ugh, exceptions.");
+            Log.d("GainedException", "While taking value from EditText");
         }
 
         DatabaseHandler db=new DatabaseHandler(this);
@@ -53,7 +53,7 @@ public class Gained extends AppCompatActivity
         }
         catch(Exception e)
         {
-            Log.d("What is this Vivek??", "Illegal Argument Exception");
+            Log.d("GainedException", "While adding to DB");
         }
         Intent i=new Intent(Gained.this, Dashboard.class);
         startActivity(i);
