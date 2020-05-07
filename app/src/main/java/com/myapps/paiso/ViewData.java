@@ -60,7 +60,7 @@ public class ViewData extends AppCompatActivity
         }
         catch(Exception e)
         {
-            Log.d("Exceptions", "Something's wrong with the hash table.");
+            Log.d("ViewDataException", "Something's wrong with the hash table.");
         }
 
 
@@ -81,10 +81,13 @@ public class ViewData extends AppCompatActivity
 
     public void onClickRefresh(View view)
     {
-        finish();
-        overridePendingTransition(0, 0);
-        startActivity(getIntent());
-        overridePendingTransition(0, 0);
+        if(!hashTable.isEmpty())
+        {
+            finish();
+            overridePendingTransition(0, 0);
+            startActivity(getIntent());
+            overridePendingTransition(0, 0);
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -105,7 +108,7 @@ public class ViewData extends AppCompatActivity
         }
         catch(Exception e)
         {
-            Log.d("Display", "Date variable exception");
+            Log.d("ViewDataException", "Date variable exception");
         }
         linearLayout=findViewById(R.id.scroll_linear_layout);
         params=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
@@ -173,7 +176,7 @@ public class ViewData extends AppCompatActivity
         }
         catch (Exception e)
         {
-            Log.d("Exceptions", "nullptr");
+            Log.d("ViewDataException", "nullptr");
         }
     }
 }
