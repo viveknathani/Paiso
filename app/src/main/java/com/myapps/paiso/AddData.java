@@ -3,6 +3,7 @@ package com.myapps.paiso;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -29,13 +30,32 @@ public class AddData extends AppCompatActivity
         EditText expense_date=(EditText)findViewById(R.id.expense_d);
         Spinner payment_mode=(Spinner) findViewById(R.id.payment_mode);
 
-        String db_e_name=expense_name.getText().toString();
-        float db_amount=Float.valueOf(amount.getText().toString());
-        String db_e_date=expense_date.getText().toString();
-        String db_mode=payment_mode.getSelectedItem().toString();
+        String db_e_name="";
+        float db_amount=0;
+        String db_e_date="";
+        String db_mode="";
+
+        try
+        {
+            db_e_name=expense_name.getText().toString();
+            db_amount=Float.valueOf(amount.getText().toString());
+            db_e_date=expense_date.getText().toString();
+            db_mode=payment_mode.getSelectedItem().toString();
+        }
+        catch(Exception e)
+        {
+            Log.d("SpentException", "While taking value from EditText");
+        }
 
         DatabaseHandler db=new DatabaseHandler(this);
-        db.addDataToCreditDebitInfoAndModifyUserInfo(db_e_name, db_amount, db_e_date, db_mode, "DEBIT");
+        try
+        {
+            db.addDataToCreditDebitInfoAndModifyUserInfo(db_e_name, db_amount, db_e_date, db_mode, "DEBIT");
+        }
+        catch(Exception e)
+        {
+            Log.d("SpentException", "While adding to DB");
+        }
         Intent i=new Intent(AddData.this, Dashboard.class);
         startActivity(i);
     }
