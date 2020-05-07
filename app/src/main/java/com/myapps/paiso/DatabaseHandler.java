@@ -56,6 +56,15 @@ public class DatabaseHandler extends SQLiteOpenHelper
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues rowValues=new ContentValues();
 
+        if(bank_d<0)
+            bank_d=0;
+
+        if(cash_d<0)
+            cash_d=0;
+
+        if(ewallet_d<0)
+            ewallet_d=0;
+
         rowValues.put("NAME", username);
         rowValues.put("DETAILS_BANK", bank_d);
         rowValues.put("DETAILS_CASH", cash_d);
@@ -145,6 +154,11 @@ public class DatabaseHandler extends SQLiteOpenHelper
             newValue=currentValue+amount;
         }
 
+        if(newValue<0)
+        {
+            newValue=0;
+        }
+        
         String updateTable="UPDATE USER_INFO SET "+option+" = "+newValue;
         cursor.close();
         db.execSQL(updateTable);

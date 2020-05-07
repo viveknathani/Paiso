@@ -44,5 +44,6 @@ public class MainActivity extends AppCompatActivity
         intent.setType("text/plain");
         intent.putExtra("Name", nameText);
         startActivity(intent);
+        finish();
     }
 }

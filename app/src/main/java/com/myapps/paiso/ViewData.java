@@ -23,7 +23,7 @@ public class ViewData extends AppCompatActivity
     LinearLayout.LayoutParams params;
     CardView.LayoutParams params_cardview;
 
-    private Map<Date, LinkedList<ExpenseData>> hashTable;
+    private Map<Date, LinkedList<ExpenseData>> hashTable=new TreeMap<Date, LinkedList<ExpenseData>>();
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -31,30 +31,39 @@ public class ViewData extends AppCompatActivity
         setContentView(R.layout.activity_view_data);
 
         DatabaseHandler db=new DatabaseHandler(this);
-        hashTable=db.returnHashTable();
 
-        String[] datesArray=new String[hashTable.size()];
-        ArrayList<String> tempDateHolder=new ArrayList<String>();
-
-        for(Map.Entry<Date, LinkedList<ExpenseData>> entry : hashTable.entrySet())
+        try
         {
-            tempDateHolder.add(entry.getValue().get(0).getDate());
+            hashTable=db.returnHashTable();
+            String[] datesArray=new String[hashTable.size()];
+            ArrayList<String> tempDateHolder=new ArrayList<String>();
+
+            for(Map.Entry<Date, LinkedList<ExpenseData>> entry : hashTable.entrySet())
+            {
+                tempDateHolder.add(entry.getValue().get(0).getDate());
+            }
+
+            for(int i=0; i<tempDateHolder.size(); i++)
+            {
+                String m=tempDateHolder.get(i);
+                datesArray[i]=m;
+            }
+
+            Spinner start_spinner=findViewById(R.id.start_date);
+            Spinner end_spinner=findViewById(R.id.end_date);
+            ArrayAdapter<String> start_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, datesArray);
+            start_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            ArrayAdapter<String> end_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, datesArray);
+            end_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            start_spinner.setAdapter(start_adapter);
+            end_spinner.setAdapter(end_adapter);
+        }
+        catch(Exception e)
+        {
+            Log.d("Exceptions", "Something's wrong with the hash table.");
         }
 
-        for(int i=0; i<tempDateHolder.size(); i++)
-        {
-            String m=tempDateHolder.get(i);
-            datesArray[i]=m;
-        }
 
-        Spinner start_spinner=findViewById(R.id.start_date);
-        Spinner end_spinner=findViewById(R.id.end_date);
-        ArrayAdapter<String> start_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, datesArray);
-        start_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        ArrayAdapter<String> end_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, datesArray);
-        end_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        start_spinner.setAdapter(start_adapter);
-        end_spinner.setAdapter(end_adapter);
     }
 
     protected Date parseMyDate(String val)
@@ -70,18 +79,6 @@ public class ViewData extends AppCompatActivity
         }
     }
 
-    protected void addTextView(LinearLayout ll_main, String text){
-        TextView textView = new TextView(this);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT
-        );
-        ll_main.setOrientation(LinearLayout.VERTICAL);
-        textView.setLayoutParams(params);
-        textView.setText(text);
-        ll_main.addView(textView);
-    }
-
     public void onClickRefresh(View view)
     {
         finish();
@@ -95,10 +92,21 @@ public class ViewData extends AppCompatActivity
     {
         Spinner start_spinner=findViewById(R.id.start_date);
         Spinner end_spinner=findViewById(R.id.end_date);
-        String startDate=start_spinner.getSelectedItem().toString();
-        String endDate=end_spinner.getSelectedItem().toString();
-        Date parsed_startDate=parseMyDate(startDate);
-        Date parsed_endDate=parseMyDate(endDate);
+        String startDate="";
+        String endDate="";
+        Date parsed_startDate=new Date();
+        Date parsed_endDate=new Date();
+        try
+        {
+            startDate=start_spinner.getSelectedItem().toString();
+            endDate=end_spinner.getSelectedItem().toString();
+            parsed_startDate=parseMyDate(startDate);
+            parsed_endDate = parseMyDate(endDate);
+        }
+        catch(Exception e)
+        {
+            Log.d("Display", "Date variable exception");
+        }
         linearLayout=findViewById(R.id.scroll_linear_layout);
         params=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -167,6 +175,5 @@ public class ViewData extends AppCompatActivity
         {
             Log.d("Exceptions", "nullptr");
         }
-        //addTextView(ll_main, multiLineText);
     }
 }

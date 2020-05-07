@@ -54,5 +54,6 @@ public class GetDetails extends AppCompatActivity
         db.addDataToUserInfo(nameText, values[0], values[1], values[2]);
         Intent i=new Intent(GetDetails.this, Dashboard.class);
         startActivity(i);
+        finish();
     }
 }

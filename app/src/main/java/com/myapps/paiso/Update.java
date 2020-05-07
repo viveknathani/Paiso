@@ -26,7 +26,7 @@ public class Update extends AppCompatActivity
     LinearLayout.LayoutParams button_params;
     CardView.LayoutParams params_cardview;
 
-    private Map<Date, LinkedList<ExpenseData>> hashTable;
+    private Map<Date, LinkedList<ExpenseData>> hashTable=new TreeMap<Date, LinkedList<ExpenseData>>();
     DatabaseHandler db;
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -35,7 +35,15 @@ public class Update extends AppCompatActivity
         setContentView(R.layout.activity_update);
 
         db=new DatabaseHandler(this);
-        hashTable=db.returnHashTable();
+
+        try
+        {
+            hashTable=db.returnHashTable();
+        }
+        catch(Exception e)
+        {
+            Log.d("One more", "Hash Table Exceptions");
+        }
 
         String[] datesArray=new String[hashTable.size()];
         ArrayList<String> tempDateHolder=new ArrayList<String>();
@@ -74,18 +82,6 @@ public class Update extends AppCompatActivity
         }
     }
 
-    protected void addTextView(LinearLayout ll_main, String text){
-        TextView textView = new TextView(this);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT
-        );
-        ll_main.setOrientation(LinearLayout.VERTICAL);
-        textView.setLayoutParams(params);
-        textView.setText(text);
-        ll_main.addView(textView);
-    }
-
     public void onClickRefresh(View view)
     {
         finish();
@@ -99,10 +95,21 @@ public class Update extends AppCompatActivity
     {
         Spinner start_spinner=findViewById(R.id.start_date);
         Spinner end_spinner=findViewById(R.id.end_date);
-        String startDate=start_spinner.getSelectedItem().toString();
-        String endDate=end_spinner.getSelectedItem().toString();
-        Date parsed_startDate=parseMyDate(startDate);
-        Date parsed_endDate=parseMyDate(endDate);
+        String startDate="";
+        String endDate="";
+        Date parsed_startDate=new Date();
+        Date parsed_endDate=new Date();
+        try
+        {
+            startDate=start_spinner.getSelectedItem().toString();
+            endDate=end_spinner.getSelectedItem().toString();
+            parsed_startDate=parseMyDate(startDate);
+            parsed_endDate = parseMyDate(endDate);
+        }
+        catch(Exception e)
+        {
+            Log.d("Display", "Date variable exception");
+        }
         linearLayout=findViewById(R.id.scroll_linear_layout);
         params=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
