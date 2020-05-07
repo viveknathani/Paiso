@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -12,7 +13,7 @@ import android.widget.EditText;
 
 public class GetDetails extends AppCompatActivity
 {
-    public String nameText="";  //for retrieving name from previous activity
+    public String nameText="User";  //for retrieving name from previous activity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -38,16 +39,15 @@ public class GetDetails extends AppCompatActivity
         }
     }
 
-    //take the name that came from previous activity and the monetary values and put them into DB.
     public void onClickDashboard(View view)
     {
         EditText[] valuesView={ findViewById(R.id.details_bank),
-                                findViewById(R.id.details_cash),
-                                findViewById(R.id.details_ewallet), };
+                findViewById(R.id.details_cash),
+                findViewById(R.id.details_ewallet), };
 
         float[] values={ Float.valueOf(valuesView[0].getText().toString()),
-                         Float.valueOf(valuesView[1].getText().toString()),
-                         Float.valueOf(valuesView[2].getText().toString()) };
+                Float.valueOf(valuesView[1].getText().toString()),
+                Float.valueOf(valuesView[2].getText().toString()) };
 
         //put content into the database
         DatabaseHandler db=new DatabaseHandler(this);
