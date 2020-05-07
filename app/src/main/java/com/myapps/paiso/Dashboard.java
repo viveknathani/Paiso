@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import com.github.mikephil.charting.charts.PieChart;
@@ -34,7 +35,8 @@ public class Dashboard extends AppCompatActivity
 
         //get user info from database
         DatabaseHandler db=new DatabaseHandler(this);
-        List<Float> detailsList=db.getMoneyDetailsFromDB();
+        List<Float> detailsList=new ArrayList<Float>();
+        detailsList=db.getMoneyDetailsFromDB();
 
         try
         {
@@ -45,7 +47,7 @@ public class Dashboard extends AppCompatActivity
         }
         catch(Exception e)
         {
-            System.out.println("Out of bounds exception");
+            Log.d("DashBoardExceptions", "Exception");
         }
 
         try
@@ -56,7 +58,7 @@ public class Dashboard extends AppCompatActivity
         }
         catch(Exception e)
         {
-            System.out.println("Out of bounds exception");
+            Log.d("DashBoardExceptions", "Exception");
         }
 
         makePieChart(bank_details, cash_details, ewallet_details);
@@ -114,7 +116,7 @@ public class Dashboard extends AppCompatActivity
         data.setDrawValues(false);
 
         //more styling and finally display the chart
-        chart.setCenterText("Paiso Distribution");
+        chart.setCenterText(Float.toString(totalValue));
         chart.setHoleColor(Color.WHITE);
         chart.setCenterTextColor(Color.BLACK);
         chart.setCenterTextSize(18);
